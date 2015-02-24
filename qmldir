@@ -1,0 +1,4 @@
+module QQRCode
+
+QRCode  1.0 QRCode.qml
+QRCodeBackend 1.0 qqr.js
