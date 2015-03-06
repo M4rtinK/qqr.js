@@ -13,8 +13,11 @@ Canvas {
     property string value : ""
 
     onPaint : {
-        var qr = QRCodeBackend.get_qr()
-        qr.canvas({
+
+        var qr = QRCodeBackend.get_qr();
+        var api = qr.getApi();
+
+        api.canvas({
             background : canvas.background,
             canvas : canvas,
             value: canvas.value,

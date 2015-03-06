@@ -9,9 +9,9 @@
 
 .pragma library
 
-var _qr_instance
+function QrCode() {
 
-(function (root) {
+    var root = {};
 
   'use strict';
 
@@ -1001,7 +1001,7 @@ var _qr_instance
   // -----------
 
   // Build the publicly exposed API.
-  var qr = {
+  var public_api = {
 
     // Constants
     // ---------
@@ -1047,10 +1047,12 @@ var _qr_instance
       px /= width;
       px  = Math.floor(px);
 
+      var border = 8;
+
       // Draw the QR code.
       c2d.clearRect(0, 0, size, size);
       c2d.fillStyle = data.background || '#fff';
-      c2d.fillRect(0, 0, px * (width + 8), px * (width + 8));
+      c2d.fillRect(0, 0, px * (width + border), px * (width + border));
       c2d.fillStyle = data.foreground || '#000';
 
       var i, j;
@@ -1058,7 +1060,7 @@ var _qr_instance
       for (i = 0; i < width; i++) {
         for (j = 0; j < width; j++) {
           if (frame[j * width + i]) {
-            c2d.fillRect(px * i, px * j, px, px);
+            c2d.fillRect(border + px * i, border + px * j, px, px);
           }
         }
       }
@@ -1185,14 +1187,17 @@ var _qr_instance
 
   };
 
-  // Support
-  // -------
+  //export the API
 
-  // Export `qr` for QtQuick
-  _qr_instance = qr
+    this.getApi = function ()
+    {
+        return public_api;
+    }
 
-})(this);
+};
 
+//function to find the instance of the qr object for each spesific QML object.
 function get_qr() {
-  return _qr_instance
+
+    return new QrCode();
 }
