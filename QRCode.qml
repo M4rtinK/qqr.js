@@ -13,8 +13,8 @@ Canvas {
     property string value : ""
 
     onPaint : {
-      // give the object id as unique identification for the lib
-        var qr = QRCodeBackend.get_qr(canvas);
+
+        var qr = QRCodeBackend.get_qr();
         var api = qr.getApi();
 
         api.canvas({

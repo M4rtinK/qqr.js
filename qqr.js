@@ -1196,18 +1196,8 @@ function QrCode() {
 
 };
 
-//Container for the instances
-var _qr_instances = {};
-
 //function to find the instance of the qr object for each spesific QML object.
-function get_qr(key) {
-    var h = key.toString()
+function get_qr() {
 
-    var qr_instance = _qr_instances[h]
-    if (!qr_instance) {
-        qr_instance = new QrCode();
-        _qr_instances[h] = qr_instance
-    }
-
-    return qr_instance
+    return new QrCode();
 }
